@@ -1,16 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient(
-  process.env.DATABASE_LOG === '1'
-    ? {
-        log: [
-          {
-            emit: 'event',
-            level: 'query',
-          },
-        ],
-      }
-    : {},
-)
+declare global {
+  var prisma: PrismaClient | undefined
+}
 
-export default prisma
+export const prisma = global.prisma || new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma
+
+export * from '@prisma/client'

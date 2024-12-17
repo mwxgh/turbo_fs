@@ -2,7 +2,7 @@
   "name": "@repo/database",
   "version": "1.0.0",
   "exports": {
-    "./prisma": "./prisma/prismaClient.ts"
+    ".": "./prisma/prismaClient.ts"
   },
   "scripts": {
     "db:pull": "prisma db pull",
@@ -12,10 +12,10 @@
     "studio": "prisma studio"
   },
   "devDependencies": {
-    "prisma": "^6.0.1",
-    "@repo/typescript-config": "*"
+    "@repo/typescript-config": "*",
+    "prisma": "^6.1.0"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.1"
+    "@prisma/client": "^6.1.0"
   }
 }
