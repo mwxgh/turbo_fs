@@ -15,7 +15,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["API_PORT", "LOG_LEVEL", "NODE_ENV"]
     }
   }
 }
