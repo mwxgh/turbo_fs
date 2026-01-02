@@ -16,7 +16,23 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["API_PORT", "LOG_LEVEL", "NODE_ENV"]
+      "env": [
+        "API_PORT",
+        "API_HOST",
+        "SWAGGER_ENABLED",
+        "SWAGGER_PATH",
+        "SWAGGER_TITLE",
+        "SWAGGER_DESCRIPTION",
+        "SWAGGER_VERSION",
+        "NODE_ENV",
+        "DB_HOST",
+        "DB_PORT",
+        "DB_USERNAME",
+        "DB_PASSWORD",
+        "DB_NAME",
+        "LOG_LEVEL",
+        "TYPEORM_LOGGING"
+      ]
     }
   }
 }

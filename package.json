@@ -9,7 +9,7 @@
     "lint": "turbo run lint",
     "clear": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.turbo apps/*/dist apps/*/.next packages/*/node_modules packages/*/.turbo packages/*/dist",
     "check-types": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,md,mjs}\" --check",
+    "format": "prettier --write \"**/*.{ts,tsx,md,mjs,json}\" --check",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -27,5 +27,8 @@
   "packageManager": "pnpm@10.19.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
