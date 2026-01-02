@@ -1,5 +1,5 @@
 {
-  "name": "with-tailwind",
+  "name": "turbo_fs",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -7,11 +7,19 @@
     "api": "turbo run dev --filter=api",
     "web": "turbo run dev --filter=web",
     "lint": "turbo run lint",
-    "clear": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.turbo apps/*/dist apps/*/.next packages/*/node_modules packages/*/.turbo packages/*/dist", 
+    "clear": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.turbo apps/*/dist apps/*/.next packages/*/node_modules packages/*/.turbo packages/*/dist",
     "check-types": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\" --check"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\" --check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx,json,md,css,scss,yml,yaml}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "turbo": "^2.7.2"
