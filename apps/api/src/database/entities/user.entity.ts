@@ -1,17 +1,9 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm'
+import { Column, Entity, Index, OneToMany } from 'typeorm'
+import { BaseEntity } from './base.entity'
+import { UserRoleEntity } from './user-role.entity'
 
-@Entity({ name: 'User' })
-export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id!: number
-
+@Entity({ name: 'user' })
+export class UserEntity extends BaseEntity {
   @Index({ unique: true })
   @Column({ type: 'varchar', length: 255 })
   email!: string
@@ -19,9 +11,7 @@ export class UserEntity {
   @Column({ type: 'varchar', length: 255, nullable: true })
   name?: string | null
 
-  @CreateDateColumn({ type: 'datetime' })
-  createdAt!: Date
-
-  @UpdateDateColumn({ type: 'datetime' })
-  updatedAt!: Date
+  // Relations
+  @OneToMany(() => UserRoleEntity, (ur) => ur.user)
+  userRoles!: UserRoleEntity[]
 }
