@@ -1,24 +1,34 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm'
-import { BaseEntity } from './base.entity'
-import { RoleEntity } from './role.entity'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { UserEntity } from './user.entity'
+import { RoleEntity } from './role.entity'
 
 @Entity({ name: 'user_role' })
-@Index(['userId', 'roleId'], { unique: true })
-export class UserRoleEntity extends BaseEntity {
-  // Foreign keys
-  @Column({ name: 'user_id', type: 'int' })
-  userId!: number
+@Index('uq_cps_user_roles_user_role', ['userId', 'roleId'], {
+  unique: true,
+})
+export class UserRoleEntity {
+  @PrimaryColumn({ type: 'bigint', unsigned: true, name: 'user_id' })
+  userId!: string
 
-  @Column({ name: 'role_id', type: 'int' })
-  roleId!: number
+  @PrimaryColumn({ type: 'bigint', unsigned: true, name: 'role_id' })
+  roleId!: string
 
-  // Relations
-  @ManyToOne(() => UserEntity, { onDelete: 'CASCADE' })
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
+  createdAt!: Date
+
+  @ManyToOne(() => UserEntity, (u) => u.userRoles, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user!: UserEntity
 
-  @ManyToOne(() => RoleEntity, { onDelete: 'CASCADE' })
+  @ManyToOne(() => RoleEntity, (r) => r.userRoles, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'role_id' })
   role!: RoleEntity
 }
